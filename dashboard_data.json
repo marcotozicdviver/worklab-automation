@@ -1,0 +1,3100 @@
+[
+  {
+    "inicio": "2026-05-17T18:14:35.428605-03:00",
+    "fim": "2026-05-17T18:15:01.074852-03:00",
+    "duracao_s": 25,
+    "total_pacientes": 3,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "16/05/2026",
+        "pacientes": 3,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "17/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "Nenhum status 'sucesso' identificado - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-17T20:05:54.232018-03:00",
+    "fim": "2026-05-17T20:06:19.717124-03:00",
+    "duracao_s": 25,
+    "total_pacientes": 3,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "16/05/2026",
+        "pacientes": 3,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "17/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "Nenhum status 'sucesso' identificado - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-17T21:07:49.618498-03:00",
+    "fim": "2026-05-17T21:08:20.105552-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 5,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "16/05/2026",
+        "pacientes": 4,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "17/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-17T22:06:47.476296-03:00",
+    "fim": "2026-05-17T22:07:18.145104-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 7,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "16/05/2026",
+        "pacientes": 5,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "17/05/2026",
+        "pacientes": 2,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-17T23:04:00.770663-03:00",
+    "fim": "2026-05-17T23:04:31.297223-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 3,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "16/05/2026",
+        "pacientes": 3,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "17/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "Nenhum status 'sucesso' identificado - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-18T00:06:54.985363-03:00",
+    "fim": "2026-05-18T00:07:20.441872-03:00",
+    "duracao_s": 25,
+    "total_pacientes": 2,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "17/05/2026",
+        "pacientes": 2,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "18/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "Nenhum status 'sucesso' identificado - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-18T01:07:09.423441-03:00",
+    "fim": "2026-05-18T01:08:35.116860-03:00",
+    "duracao_s": 85,
+    "total_pacientes": 5,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "17/05/2026",
+        "pacientes": 4,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "18/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-18T02:06:47.688078-03:00",
+    "fim": "2026-05-18T02:07:13.229344-03:00",
+    "duracao_s": 25,
+    "total_pacientes": 5,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "17/05/2026",
+        "pacientes": 3,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "18/05/2026",
+        "pacientes": 2,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-18T03:14:11.968810-03:00",
+    "fim": "2026-05-18T03:14:37.391088-03:00",
+    "duracao_s": 25,
+    "total_pacientes": 5,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "17/05/2026",
+        "pacientes": 3,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "18/05/2026",
+        "pacientes": 2,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-18T04:07:26.286196-03:00",
+    "fim": "2026-05-18T04:07:51.778279-03:00",
+    "duracao_s": 25,
+    "total_pacientes": 5,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "17/05/2026",
+        "pacientes": 3,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "18/05/2026",
+        "pacientes": 2,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-18T05:08:56.056228-03:00",
+    "fim": "2026-05-18T05:09:21.605499-03:00",
+    "duracao_s": 25,
+    "total_pacientes": 5,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "17/05/2026",
+        "pacientes": 3,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "18/05/2026",
+        "pacientes": 2,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-18T06:06:59.985073-03:00",
+    "fim": "2026-05-18T06:07:25.576331-03:00",
+    "duracao_s": 25,
+    "total_pacientes": 5,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "17/05/2026",
+        "pacientes": 3,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "18/05/2026",
+        "pacientes": 2,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-18T20:04:10.289135-03:00",
+    "fim": "2026-05-18T20:04:37.156049-03:00",
+    "duracao_s": 26,
+    "total_pacientes": 3,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "17/05/2026",
+        "pacientes": 2,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "18/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-18T21:06:13.108072-03:00",
+    "fim": "2026-05-18T21:06:43.865108-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 1,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "17/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "18/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "Nenhum status 'sucesso' identificado - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-18T22:05:37.508218-03:00",
+    "fim": "2026-05-18T22:06:13.562923-03:00",
+    "duracao_s": 36,
+    "total_pacientes": 5,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "17/05/2026",
+        "pacientes": 3,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "18/05/2026",
+        "pacientes": 2,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-18T23:05:06.763781-03:00",
+    "fim": "2026-05-18T23:05:32.686934-03:00",
+    "duracao_s": 25,
+    "total_pacientes": 1,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "17/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "18/05/2026",
+        "pacientes": 0,
+        "sem_exames": true,
+        "statuses": [],
+        "conclusao": "Sem exames - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-19T00:06:12.646924-03:00",
+    "fim": "2026-05-19T00:06:38.249147-03:00",
+    "duracao_s": 25,
+    "total_pacientes": 0,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "18/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "Nenhum status 'sucesso' identificado - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "19/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "Nenhum status 'sucesso' identificado - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-19T01:06:23.498391-03:00",
+    "fim": "2026-05-19T01:06:54.104493-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 4,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "18/05/2026",
+        "pacientes": 2,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "19/05/2026",
+        "pacientes": 2,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-19T02:06:16.499200-03:00",
+    "fim": "2026-05-19T02:06:47.098001-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 8,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "18/05/2026",
+        "pacientes": 4,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "19/05/2026",
+        "pacientes": 4,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-19T03:10:15.813485-03:00",
+    "fim": "2026-05-19T03:10:41.418517-03:00",
+    "duracao_s": 25,
+    "total_pacientes": 2,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "18/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "19/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-19T04:07:31.431918-03:00",
+    "fim": "2026-05-19T04:08:02.362035-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 2,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "18/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "19/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-19T05:10:49.826770-03:00",
+    "fim": "2026-05-19T05:11:15.613925-03:00",
+    "duracao_s": 25,
+    "total_pacientes": 2,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "18/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "19/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-19T05:11:47.061028-03:00",
+    "fim": "2026-05-19T05:12:12.524511-03:00",
+    "duracao_s": 25,
+    "total_pacientes": 2,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "18/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "19/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-19T06:05:10.651050-03:00",
+    "fim": "2026-05-19T06:05:36.454766-03:00",
+    "duracao_s": 25,
+    "total_pacientes": 4,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "18/05/2026",
+        "pacientes": 2,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "19/05/2026",
+        "pacientes": 2,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-19T20:06:14.950860-03:00",
+    "fim": "2026-05-19T20:07:06.658936-03:00",
+    "duracao_s": 51,
+    "total_pacientes": 36,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "18/05/2026",
+        "pacientes": 18,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "19/05/2026",
+        "pacientes": 18,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-19T21:09:04.361771-03:00",
+    "fim": "2026-05-19T21:09:45.135151-03:00",
+    "duracao_s": 40,
+    "total_pacientes": 36,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "18/05/2026",
+        "pacientes": 18,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "19/05/2026",
+        "pacientes": 18,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-19T22:06:23.378814-03:00",
+    "fim": "2026-05-19T22:07:04.110006-03:00",
+    "duracao_s": 40,
+    "total_pacientes": 26,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "18/05/2026",
+        "pacientes": 13,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "19/05/2026",
+        "pacientes": 13,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-19T23:05:14.154894-03:00",
+    "fim": "2026-05-19T23:05:55.389782-03:00",
+    "duracao_s": 41,
+    "total_pacientes": 26,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "18/05/2026",
+        "pacientes": 13,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "19/05/2026",
+        "pacientes": 13,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-20T00:07:51.403077-03:00",
+    "fim": "2026-05-20T00:08:22.592781-03:00",
+    "duracao_s": 31,
+    "total_pacientes": 13,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "19/05/2026",
+        "pacientes": 13,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "20/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "Nenhum status 'sucesso' identificado - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-20T01:08:58.128563-03:00",
+    "fim": "2026-05-20T01:09:28.760343-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 13,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "19/05/2026",
+        "pacientes": 13,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "20/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "Nenhum status 'sucesso' identificado - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-20T02:07:07.614180-03:00",
+    "fim": "2026-05-20T02:07:38.215901-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 17,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "19/05/2026",
+        "pacientes": 15,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "20/05/2026",
+        "pacientes": 2,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-20T03:14:14.236576-03:00",
+    "fim": "2026-05-20T03:14:44.889021-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 17,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "19/05/2026",
+        "pacientes": 15,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "20/05/2026",
+        "pacientes": 2,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-20T04:07:52.279307-03:00",
+    "fim": "2026-05-20T04:08:22.946439-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 17,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "19/05/2026",
+        "pacientes": 15,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "20/05/2026",
+        "pacientes": 2,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-20T05:11:00.037363-03:00",
+    "fim": "2026-05-20T05:11:30.824572-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 17,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "19/05/2026",
+        "pacientes": 15,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "20/05/2026",
+        "pacientes": 2,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-20T06:06:16.998330-03:00",
+    "fim": "2026-05-20T06:06:47.615142-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 17,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "19/05/2026",
+        "pacientes": 15,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "20/05/2026",
+        "pacientes": 2,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-20T20:07:01.122102-03:00",
+    "fim": "2026-05-20T20:07:42.602342-03:00",
+    "duracao_s": 41,
+    "total_pacientes": 33,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "19/05/2026",
+        "pacientes": 18,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "20/05/2026",
+        "pacientes": 15,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-20T21:07:29.482982-03:00",
+    "fim": "2026-05-20T21:08:10.128050-03:00",
+    "duracao_s": 40,
+    "total_pacientes": 33,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "19/05/2026",
+        "pacientes": 18,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "20/05/2026",
+        "pacientes": 15,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-20T22:07:13.672536-03:00",
+    "fim": "2026-05-20T22:07:54.340441-03:00",
+    "duracao_s": 40,
+    "total_pacientes": 35,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "19/05/2026",
+        "pacientes": 19,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "20/05/2026",
+        "pacientes": 16,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-20T23:05:39.838290-03:00",
+    "fim": "2026-05-20T23:06:25.495853-03:00",
+    "duracao_s": 45,
+    "total_pacientes": 35,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "19/05/2026",
+        "pacientes": 19,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "20/05/2026",
+        "pacientes": 16,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-21T00:07:33.299103-03:00",
+    "fim": "2026-05-21T00:08:03.816451-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 15,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "20/05/2026",
+        "pacientes": 15,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "21/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "Nenhum status 'sucesso' identificado - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-21T01:06:43.693168-03:00",
+    "fim": "2026-05-21T01:07:14.312502-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 15,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "20/05/2026",
+        "pacientes": 15,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "21/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "Nenhum status 'sucesso' identificado - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-21T02:06:18.470506-03:00",
+    "fim": "2026-05-21T02:06:54.116260-03:00",
+    "duracao_s": 35,
+    "total_pacientes": 15,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "20/05/2026",
+        "pacientes": 15,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "21/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "Nenhum status 'sucesso' identificado - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-21T03:11:46.589096-03:00",
+    "fim": "2026-05-21T03:12:22.230380-03:00",
+    "duracao_s": 35,
+    "total_pacientes": 15,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "20/05/2026",
+        "pacientes": 15,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "21/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "Nenhum status 'sucesso' identificado - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-21T04:09:47.122819-03:00",
+    "fim": "2026-05-21T04:10:27.915355-03:00",
+    "duracao_s": 40,
+    "total_pacientes": 15,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "20/05/2026",
+        "pacientes": 15,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "21/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "Nenhum status 'sucesso' identificado - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-21T05:10:46.058763-03:00",
+    "fim": "2026-05-21T05:11:16.590016-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 15,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "20/05/2026",
+        "pacientes": 15,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "21/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "Nenhum status 'sucesso' identificado - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-21T06:06:58.122902-03:00",
+    "fim": "2026-05-21T06:07:28.977440-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 15,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "20/05/2026",
+        "pacientes": 15,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "21/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "Nenhum status 'sucesso' identificado - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-21T20:05:09.677303-03:00",
+    "fim": "2026-05-21T20:05:33.378940-03:00",
+    "duracao_s": 23,
+    "total_pacientes": 0,
+    "status": "erro",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "20/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "FALHA: Nao foi possivel clicar na opcao 'Sim' do dropdown Conferido."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "21/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "FALHA: Nao foi possivel clicar na opcao 'Sim' do dropdown Conferido."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-21T20:06:03.264123-03:00",
+    "fim": "2026-05-21T20:06:27.755663-03:00",
+    "duracao_s": 24,
+    "total_pacientes": 0,
+    "status": "erro",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "20/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "FALHA: Nao foi possivel clicar na opcao 'Sim' do dropdown Conferido."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "21/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "FALHA: Nao foi possivel clicar na opcao 'Sim' do dropdown Conferido."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-21T20:06:51.084329-03:00",
+    "fim": "2026-05-21T20:07:36.889166-03:00",
+    "duracao_s": 45,
+    "total_pacientes": 7,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "20/05/2026",
+        "pacientes": 6,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "21/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-21T21:06:05.789880-03:00",
+    "fim": "2026-05-21T21:06:46.054046-03:00",
+    "duracao_s": 40,
+    "total_pacientes": 5,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "20/05/2026",
+        "pacientes": 5,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "21/05/2026",
+        "pacientes": 0,
+        "sem_exames": true,
+        "statuses": [],
+        "conclusao": "Sem exames - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-21T22:05:38.234449-03:00",
+    "fim": "2026-05-21T22:06:23.889332-03:00",
+    "duracao_s": 45,
+    "total_pacientes": 5,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "20/05/2026",
+        "pacientes": 5,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "21/05/2026",
+        "pacientes": 0,
+        "sem_exames": true,
+        "statuses": [],
+        "conclusao": "Sem exames - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-21T23:03:51.371154-03:00",
+    "fim": "2026-05-21T23:04:36.701099-03:00",
+    "duracao_s": 45,
+    "total_pacientes": 5,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "20/05/2026",
+        "pacientes": 5,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "21/05/2026",
+        "pacientes": 0,
+        "sem_exames": true,
+        "statuses": [],
+        "conclusao": "Sem exames - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-22T00:06:31.533357-03:00",
+    "fim": "2026-05-22T00:07:06.864069-03:00",
+    "duracao_s": 35,
+    "total_pacientes": 0,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "21/05/2026",
+        "pacientes": 0,
+        "sem_exames": true,
+        "statuses": [],
+        "conclusao": "Sem exames - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "22/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "Nenhum status 'sucesso' identificado - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-22T01:06:49.411064-03:00",
+    "fim": "2026-05-22T01:07:24.643778-03:00",
+    "duracao_s": 35,
+    "total_pacientes": 2,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "21/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "22/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-22T02:06:03.074675-03:00",
+    "fim": "2026-05-22T02:06:43.397591-03:00",
+    "duracao_s": 40,
+    "total_pacientes": 4,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "21/05/2026",
+        "pacientes": 2,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "22/05/2026",
+        "pacientes": 2,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-22T03:08:47.405089-03:00",
+    "fim": "2026-05-22T03:09:22.604761-03:00",
+    "duracao_s": 35,
+    "total_pacientes": 2,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "21/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "22/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-22T04:07:13.792759-03:00",
+    "fim": "2026-05-22T04:07:49.181166-03:00",
+    "duracao_s": 35,
+    "total_pacientes": 2,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "21/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "22/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-22T05:07:46.024786-03:00",
+    "fim": "2026-05-22T05:08:26.584859-03:00",
+    "duracao_s": 40,
+    "total_pacientes": 2,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "21/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "22/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-22T06:07:29.049400-03:00",
+    "fim": "2026-05-22T06:08:04.474980-03:00",
+    "duracao_s": 35,
+    "total_pacientes": 2,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "21/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "22/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-22T20:06:06.430554-03:00",
+    "fim": "2026-05-22T20:06:41.893980-03:00",
+    "duracao_s": 35,
+    "total_pacientes": 2,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "21/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "22/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-22T21:07:07.648454-03:00",
+    "fim": "2026-05-22T21:07:47.928387-03:00",
+    "duracao_s": 40,
+    "total_pacientes": 2,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "21/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "22/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-22T22:06:15.021045-03:00",
+    "fim": "2026-05-22T22:06:50.288421-03:00",
+    "duracao_s": 35,
+    "total_pacientes": 2,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "21/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "22/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-22T23:04:30.832101-03:00",
+    "fim": "2026-05-22T23:05:21.132983-03:00",
+    "duracao_s": 50,
+    "total_pacientes": 2,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "21/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "22/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-23T00:06:16.564231-03:00",
+    "fim": "2026-05-23T00:06:46.991048-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 1,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "22/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "23/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "Nenhum status 'sucesso' identificado - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-23T01:05:59.678930-03:00",
+    "fim": "2026-05-23T01:06:30.108571-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 3,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "22/05/2026",
+        "pacientes": 2,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "23/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-23T02:06:04.056984-03:00",
+    "fim": "2026-05-23T02:06:44.435941-03:00",
+    "duracao_s": 40,
+    "total_pacientes": 3,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "22/05/2026",
+        "pacientes": 2,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "23/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-23T03:09:24.868389-03:00",
+    "fim": "2026-05-23T03:09:55.169039-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 9,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "22/05/2026",
+        "pacientes": 5,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "23/05/2026",
+        "pacientes": 4,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-23T04:05:50.970243-03:00",
+    "fim": "2026-05-23T04:06:26.436863-03:00",
+    "duracao_s": 35,
+    "total_pacientes": 9,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "22/05/2026",
+        "pacientes": 5,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "23/05/2026",
+        "pacientes": 4,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-23T05:08:04.206721-03:00",
+    "fim": "2026-05-23T05:08:34.564300-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 9,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "22/05/2026",
+        "pacientes": 5,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "23/05/2026",
+        "pacientes": 4,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-23T06:05:58.050242-03:00",
+    "fim": "2026-05-23T06:06:28.431172-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 11,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "22/05/2026",
+        "pacientes": 6,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "23/05/2026",
+        "pacientes": 5,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-23T20:04:36.929723-03:00",
+    "fim": "2026-05-23T20:05:12.568819-03:00",
+    "duracao_s": 35,
+    "total_pacientes": 11,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "22/05/2026",
+        "pacientes": 6,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "23/05/2026",
+        "pacientes": 5,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-23T21:06:01.281924-03:00",
+    "fim": "2026-05-23T21:06:36.623192-03:00",
+    "duracao_s": 35,
+    "total_pacientes": 11,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "22/05/2026",
+        "pacientes": 6,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "23/05/2026",
+        "pacientes": 5,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-23T22:04:21.065439-03:00",
+    "fim": "2026-05-23T22:04:56.382704-03:00",
+    "duracao_s": 35,
+    "total_pacientes": 19,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "22/05/2026",
+        "pacientes": 10,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "23/05/2026",
+        "pacientes": 9,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-23T23:05:27.165107-03:00",
+    "fim": "2026-05-23T23:06:07.623397-03:00",
+    "duracao_s": 40,
+    "total_pacientes": 13,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "22/05/2026",
+        "pacientes": 7,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "23/05/2026",
+        "pacientes": 6,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-23T23:41:29.383790-03:00",
+    "fim": "2026-05-23T23:42:00.033147-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 13,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "22/05/2026",
+        "pacientes": 7,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "23/05/2026",
+        "pacientes": 6,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-24T00:06:12.123309-03:00",
+    "fim": "2026-05-24T00:06:52.504416-03:00",
+    "duracao_s": 40,
+    "total_pacientes": 6,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "23/05/2026",
+        "pacientes": 6,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "24/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "Nenhum status 'sucesso' identificado - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-24T01:05:05.429442-03:00",
+    "fim": "2026-05-24T01:05:40.755173-03:00",
+    "duracao_s": 35,
+    "total_pacientes": 6,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "23/05/2026",
+        "pacientes": 6,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "24/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "Nenhum status 'sucesso' identificado - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-24T02:05:53.882833-03:00",
+    "fim": "2026-05-24T02:06:24.108762-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 8,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "23/05/2026",
+        "pacientes": 7,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "24/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-24T03:11:26.575640-03:00",
+    "fim": "2026-05-24T03:11:56.991753-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 6,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "23/05/2026",
+        "pacientes": 6,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "24/05/2026",
+        "pacientes": 0,
+        "sem_exames": true,
+        "statuses": [],
+        "conclusao": "Sem exames - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-24T04:06:04.407767-03:00",
+    "fim": "2026-05-24T04:06:39.988756-03:00",
+    "duracao_s": 35,
+    "total_pacientes": 6,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "23/05/2026",
+        "pacientes": 6,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "24/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "Nenhum status 'sucesso' identificado - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-24T05:08:08.003589-03:00",
+    "fim": "2026-05-24T05:08:38.405168-03:00",
+    "duracao_s": 30,
+    "total_pacientes": 6,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "23/05/2026",
+        "pacientes": 6,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "24/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "Nenhum status 'sucesso' identificado - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-24T06:06:24.746664-03:00",
+    "fim": "2026-05-24T06:07:00.156356-03:00",
+    "duracao_s": 35,
+    "total_pacientes": 6,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "23/05/2026",
+        "pacientes": 6,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "24/05/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "Nenhum status 'sucesso' identificado - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-24T19:26:51.815810-03:00",
+    "fim": "2026-05-24T19:27:42.130807-03:00",
+    "duracao_s": 50,
+    "total_pacientes": 8,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "23/05/2026",
+        "pacientes": 7,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "24/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  },
+  {
+    "inicio": "2026-05-24T19:46:36.711171-03:00",
+    "fim": "2026-05-24T19:47:21.102634-03:00",
+    "duracao_s": 44,
+    "total_pacientes": 8,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "23/05/2026",
+        "pacientes": 7,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "24/05/2026",
+        "pacientes": 1,
+        "sem_exames": false,
+        "statuses": [
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
+  }
+]

@@ -1,0 +1,86 @@
+name: WorkLab CDA Automation
+
+on:
+  schedule:
+    # Horários em UTC (BRT = UTC-3)
+    - cron: '30 22 * * *'   # 19:30 BRT
+    - cron: '30 23 * * *'   # 20:30 BRT
+    - cron: '30 0 * * *'    # 21:30 BRT
+    - cron: '30 1 * * *'    # 22:30 BRT
+    - cron: '30 2 * * *'    # 23:30 BRT
+    - cron: '30 3 * * *'    # 00:30 BRT
+    - cron: '30 4 * * *'    # 01:30 BRT
+    - cron: '30 5 * * *'    # 02:30 BRT
+    - cron: '30 6 * * *'    # 03:30 BRT
+    - cron: '30 7 * * *'    # 04:30 BRT
+    - cron: '30 8 * * *'    # 05:30 BRT
+  workflow_dispatch:
+
+jobs:
+  run-automation:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Criar estrutura de diretórios
+        run: |
+          sudo mkdir -p /home/ubuntu/shared
+          sudo mkdir -p /home/ubuntu/.config
+          sudo chown -R runner:runner /home/ubuntu
+
+      - name: Escrever .env
+        env:
+          WORKLAB_URL: ${{ secrets.WORKLAB_URL }}
+          WORKLAB_LAB_ID: ${{ secrets.WORKLAB_LAB_ID }}
+          WORKLAB_USER: ${{ secrets.WORKLAB_USER }}
+          WORKLAB_PASSWORD: ${{ secrets.WORKLAB_PASSWORD }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          printf "WORKLAB_URL=%s\n" "$WORKLAB_URL" > /home/ubuntu/shared/.env
+          printf "WORKLAB_LAB_ID=%s\n" "$WORKLAB_LAB_ID" >> /home/ubuntu/shared/.env
+          printf "WORKLAB_USER=%s\n" "$WORKLAB_USER" >> /home/ubuntu/shared/.env
+          printf "WORKLAB_PASSWORD=%s\n" "$WORKLAB_PASSWORD" >> /home/ubuntu/shared/.env
+          printf "TELEGRAM_CHAT_ID=%s\n" "$TELEGRAM_CHAT_ID" >> /home/ubuntu/shared/.env
+
+      - name: Escrever segredos Telegram
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: |
+          printf '{"Telegram":{"secrets":{"BOT_TOKEN":{"value":"%s"}}}}\n' \
+            "$TELEGRAM_BOT_TOKEN" > /home/ubuntu/.config/abacusai_auth_secrets.json
+
+      - name: Copiar dashboard_data.json
+        run: cp dashboard_data.json /home/ubuntu/shared/dashboard_data.json
+
+      - name: Instalar dependências Python
+        run: pip install playwright python-dotenv
+
+      - name: Instalar Chromium
+        run: |
+          playwright install chromium
+          playwright install-deps chromium
+
+      - name: Executar automação WorkLab
+        run: python worklab_automation.py
+
+      - name: Sincronizar dashboard_data.json
+        if: always()
+        run: cp /home/ubuntu/shared/dashboard_data.json dashboard_data.json
+
+      - name: Commit dashboard atualizado
+        if: always()
+        run: |
+          git config user.email "action@github.com"
+          git config user.name "WorkLab Bot"
+          git add dashboard_data.json
+          git diff --staged --quiet || git commit -m "chore: dashboard $(date -u '+%Y-%m-%d %H:%M UTC') [skip ci]"
+          git push

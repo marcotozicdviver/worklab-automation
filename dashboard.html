@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WorkLab Dashboard</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh}
+.header{background:linear-gradient(135deg,#0ea5e9,#06b6d4);padding:24px 32px;display:flex;align-items:center;gap:16px}
+.header h1{font-size:1.6rem;color:#fff}
+.header .badge{background:rgba(255,255,255,.2);padding:4px 12px;border-radius:20px;font-size:.85rem;color:#fff}
+.container{max-width:1200px;margin:0 auto;padding:24px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+.card{background:#1e293b;border-radius:12px;padding:20px;text-align:center}
+.card .value{font-size:2rem;font-weight:700;margin:8px 0}
+.card .label{font-size:.85rem;color:#94a3b8}
+.card.ok .value{color:#22c55e}
+.card.err .value{color:#ef4444}
+.card.info .value{color:#0ea5e9}
+.card.warn .value{color:#f59e0b}
+table{width:100%;border-collapse:collapse;background:#1e293b;border-radius:12px;overflow:hidden}
+th{background:#334155;padding:12px 16px;text-align:left;font-size:.8rem;text-transform:uppercase;color:#94a3b8;letter-spacing:.5px}
+td{padding:10px 16px;border-top:1px solid #334155;font-size:.9rem}
+tr:hover td{background:#263548}
+.status-ok{color:#22c55e;font-weight:600}
+.status-err{color:#ef4444;font-weight:600}
+.tg-ok{color:#22c55e}
+.tg-fail{color:#ef4444}
+.empty{text-align:center;padding:60px;color:#64748b;font-size:1.1rem}
+.periodo-detail{font-size:.8rem;color:#94a3b8;margin-top:2px}
+.refresh-btn{background:#0ea5e9;color:#fff;border:none;padding:8px 20px;border-radius:8px;cursor:pointer;font-size:.9rem;margin-left:auto}
+.refresh-btn:hover{background:#0284c7}
+.filter-bar{display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
+.filter-bar select,.filter-bar input{background:#1e293b;color:#e2e8f0;border:1px solid #475569;padding:8px 12px;border-radius:8px;font-size:.85rem}
+.last-update{font-size:.8rem;color:#64748b;text-align:right;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="header">
+<span style="font-size:2rem">🤖</span>
+<h1>WorkLab Dashboard</h1>
+<span class="badge" id="totalRuns">0 execuções</span>
+<button class="refresh-btn" onclick="loadData()">🔄 Atualizar</button>
+</div>
+<div class="container">
+<div class="cards">
+<div class="card ok"><div class="label">Execuções OK</div><div class="value" id="cardOk">-</div></div>
+<div class="card err"><div class="label">Execuções com Erro</div><div class="value" id="cardErr">-</div></div>
+<div class="card info"><div class="label">Total Pacientes</div><div class="value" id="cardPac">-</div></div>
+<div class="card warn"><div class="label">Telegram Entregue</div><div class="value" id="cardTg">-</div></div>
+</div>
+<div class="filter-bar">
+<label>Filtrar: </label>
+<select id="filterStatus" onchange="renderTable()">
+<option value="all">Todos</option>
+<option value="ok">Somente OK</option>
+<option value="erro">Somente Erro</option>
+</select>
+<input type="date" id="filterDate" onchange="renderTable()">
+</div>
+<table>
+<thead><tr>
+<th>Data/Hora</th>
+<th>Duração</th>
+<th>Status</th>
+<th>Pacientes</th>
+<th>Telegram</th>
+<th>Detalhes</th>
+</tr></thead>
+<tbody id="tbody"></tbody>
+</table>
+<div class="last-update" id="lastUpdate"></div>
+</div>
+<script>
+let allData=[];
+async function loadData(){
+try{
+const resp=await fetch('dashboard_data.json?t='+Date.now());
+if(!resp.ok){document.getElementById('tbody').innerHTML='<tr><td colspan="6" class="empty">Nenhuma execução registrada ainda. Aguarde a próxima execução.</td></tr>';return}
+allData=await resp.json();
+allData.reverse();
+updateCards();
+renderTable();
+document.getElementById('totalRuns').textContent=allData.length+' execuções';
+document.getElementById('lastUpdate').textContent='Última atualização: '+new Date().toLocaleString('pt-BR');
+}catch(e){document.getElementById('tbody').innerHTML='<tr><td colspan="6" class="empty">Erro ao carregar dados: '+e.message+'</td></tr>'}
+}
+function updateCards(){
+let ok=0,err=0,pac=0,tg=0;
+allData.forEach(r=>{if(r.status==='ok')ok++;else err++;pac+=r.total_pacientes||0;if(r.telegram_enviado)tg++});
+document.getElementById('cardOk').textContent=ok;
+document.getElementById('cardErr').textContent=err;
+document.getElementById('cardPac').textContent=pac;
+document.getElementById('cardTg').textContent=tg+'/'+allData.length;
+}
+function renderTable(){
+const fs=document.getElementById('filterStatus').value;
+const fd=document.getElementById('filterDate').value;
+let filtered=allData;
+if(fs!=='all')filtered=filtered.filter(r=>r.status===fs);
+if(fd)filtered=filtered.filter(r=>r.inicio&&r.inicio.startsWith(fd));
+const tbody=document.getElementById('tbody');
+if(!filtered.length){tbody.innerHTML='<tr><td colspan="6" class="empty">Nenhum registro encontrado.</td></tr>';return}
+tbody.innerHTML=filtered.map(r=>{
+const dt=r.fim?new Date(r.fim).toLocaleString('pt-BR',{timeZone:'America/Sao_Paulo'}):'—';
+const dur=r.duracao_s?Math.floor(r.duracao_s/60)+'m '+r.duracao_s%60+'s':'—';
+const st=r.status==='ok'?'<span class="status-ok">✅ OK</span>':'<span class="status-err">❌ ERRO</span>';
+const tg=r.telegram_enviado?'<span class="tg-ok">✅</span>':'<span class="tg-fail">❌</span>';
+const details=(r.periodos||[]).map(p=>{
+const info=p.sem_exames?'Sem exames':p.pacientes+' pac. ('+((p.statuses||[]).join(', ')||'—')+')';
+return '<div class="periodo-detail">'+p.rotulo+': '+info+'</div>'
+}).join('');
+return '<tr><td>'+dt+'</td><td>'+dur+'</td><td>'+st+'</td><td>'+
+(r.total_pacientes||0)+'</td><td>'+tg+'</td><td>'+details+'</td></tr>'
+}).join('');
+}
+loadData();
+setInterval(loadData,60000);
+</script>
+</body>
+</html>
