@@ -21,25 +21,42 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      pages: write
-      id-token: write
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Verificar horário BRT
+        id: check_time
+        run: |
+          HORA=$(TZ='America/Sao_Paulo' date +%H)
+          MIN=$(TZ='America/Sao_Paulo' date +%M)
+          HHMM="${HORA}${MIN}"
+          echo "Horario atual BRT: ${HORA}:${MIN}"
+          # Janela permitida: 19:30-23:59 ou 00:00-05:30
+          if [[ "$HHMM" -ge "1930" ]] || [[ "$HHMM" -le "0530" ]]; then
+            echo "status=ok" >> $GITHUB_OUTPUT
+            echo "DENTRO da janela - executando automacao"
+          else
+            echo "status=skip" >> $GITHUB_OUTPUT
+            echo "FORA da janela (${HORA}:${MIN} BRT) - pulando execucao"
+          fi
+
       - name: Setup Python
+        if: steps.check_time.outputs.status == 'ok'
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
       - name: Criar estrutura de diretórios
+        if: steps.check_time.outputs.status == 'ok'
         run: |
           sudo mkdir -p /home/ubuntu/shared
           sudo mkdir -p /home/ubuntu/.config
           sudo chown -R runner:runner /home/ubuntu
 
       - name: Escrever .env
+        if: steps.check_time.outputs.status == 'ok'
         env:
           WORKLAB_URL: ${{ secrets.WORKLAB_URL }}
           WORKLAB_LAB_ID: ${{ secrets.WORKLAB_LAB_ID }}
@@ -54,6 +71,7 @@ jobs:
           printf "TELEGRAM_CHAT_ID=%s\n" "$TELEGRAM_CHAT_ID" >> /home/ubuntu/shared/.env
 
       - name: Escrever segredos Telegram
+        if: steps.check_time.outputs.status == 'ok'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         run: |
@@ -61,12 +79,15 @@ jobs:
             "$TELEGRAM_BOT_TOKEN" > /home/ubuntu/.config/abacusai_auth_secrets.json
 
       - name: Copiar dashboard_data.json
+        if: steps.check_time.outputs.status == 'ok'
         run: cp dashboard_data.json /home/ubuntu/shared/dashboard_data.json
 
       - name: Instalar dependências Python
+        if: steps.check_time.outputs.status == 'ok'
         run: pip install playwright python-dotenv
 
       - name: Instalar Chromium
+        if: steps.check_time.outputs.status == 'ok'
         env:
           PLAYWRIGHT_BROWSERS_PATH: /home/ubuntu/.cache/ms-playwright
         run: |
@@ -74,27 +95,18 @@ jobs:
           playwright install-deps chromium
 
       - name: Executar automação WorkLab
+        if: steps.check_time.outputs.status == 'ok'
         run: python worklab_automation.py
 
       - name: Sincronizar dashboard_data.json
-        if: always()
+        if: steps.check_time.outputs.status == 'ok'
         run: cp /home/ubuntu/shared/dashboard_data.json dashboard_data.json
 
       - name: Commit dashboard atualizado
-        if: always()
+        if: steps.check_time.outputs.status == 'ok'
         run: |
           git config user.email "action@github.com"
           git config user.name "WorkLab Bot"
           git add dashboard_data.json
           git diff --staged --quiet || git commit -m "chore: dashboard $(date -u '+%Y-%m-%d %H:%M UTC') [skip ci]"
           git push
-
-      - name: Publicar dashboard no GitHub Pages
-        if: always()
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: '.'
-
-      - name: Deploy para GitHub Pages
-        if: always()
-        uses: actions/deploy-pages@v4
