@@ -65,6 +65,8 @@ jobs:
         run: pip install playwright python-dotenv
 
       - name: Instalar Chromium
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: /home/ubuntu/.cache/ms-playwright
         run: |
           playwright install chromium
           playwright install-deps chromium
