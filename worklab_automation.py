@@ -653,13 +653,30 @@ def _telegram_send_raw(text: str, max_retries: int = 3):
 
 
 def send_telegram(relatorio: dict, inicio, fim, prefixo=""):
-    """Envia resumo da execucao via Telegram Bot API (sem parse_mode HTML)."""
+    """Envia resumo da execucao via Telegram Bot API (sem parse_mode HTML).
+    Notificacao enviada APENAS quando houver pacientes realmente importados."""
     data_str = fim.strftime("%d/%m/%Y")
     hora_str = fim.strftime("%H:%M")
     duracao = int((fim - inicio).total_seconds())
 
+    # Calcular total de pacientes importados em todos os periodos
+    total_pac = sum(
+        len((per.get("import_result") or {}).get("pacientes", []))
+        for per in relatorio.get("periodos", [])
+    )
+
+    # So envia notificacao se houver pacientes realmente importados
+    if total_pac == 0:
+        log("Telegram: nenhum paciente importado nesta execucao - notificacao nao enviada.")
+        return
+
     header = f"{prefixo} " if prefixo else ""
-    lines = [f"🤖 {header}WorkLab - Execução Concluída", f"📅 {data_str} {hora_str}", ""]
+    lines = [
+        f"🤖 {header}WorkLab - Execucao Concluida",
+        f"📅 {data_str} {hora_str}",
+        f"⚡ Executado pelo Claude",
+        "",
+    ]
 
     for per in relatorio.get("periodos", []):
         ir = per.get("import_result") or {}
@@ -667,9 +684,12 @@ def send_telegram(relatorio: dict, inicio, fim, prefixo=""):
         statuses = ir.get("statuses", [])
         sem = ir.get("sem_exames", False)
 
-        lines.append(f"📊 PERÍODO {per['rotulo'].upper()}")
+        if qtd == 0 and not sem:
+            continue  # pular periodos sem pacientes
+
+        lines.append(f"📊 PERIODO {per['rotulo'].upper()}")
         if sem:
-            lines.append("⚠️ Sem exames encontrados")
+            lines.append("- Sem exames encontrados")
         else:
             lines.append(f"✅ {qtd} pacientes importados")
         if statuses:
@@ -677,10 +697,10 @@ def send_telegram(relatorio: dict, inicio, fim, prefixo=""):
             for s in statuses:
                 contagem[s] = contagem.get(s, 0) + 1
             status_str = ", ".join(f"{k}: {v}" for k, v in contagem.items())
-            lines.append(f"ℹ️ Status: {status_str}")
+            lines.append(f"   Status: {status_str}")
         lines.append("")
 
-    lines.append(f"⏱️ Duração: {duracao}s")
+    lines.append(f"⏱️ Duracao: {duracao}s")
 
     texto = "\n".join(lines)
     _telegram_send_raw(texto)
@@ -691,7 +711,8 @@ def send_telegram_error(error_msg: str, prefixo=""):
     header = f"{prefixo} " if prefixo else ""
     now = datetime.now(SP_TZ)
     texto = (
-        f"🚨 {header}WorkLab - ERRO NA EXECUÇÃO\n"
+        f"🚨 {header}WorkLab - ERRO NA EXECUCAO\n"
+        f"⚡ Executado pelo Claude\n"
         f"📅 {now.strftime('%d/%m/%Y %H:%M')}\n\n"
         f"❌ {error_msg[:500]}"
     )
