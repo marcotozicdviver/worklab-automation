@@ -3550,5 +3550,50 @@
         "conclusao": "Todos com status 'info' - periodo encerrado."
       }
     ]
+  },
+  {
+    "inicio": "2026-06-06T09:50:11.951310-03:00",
+    "fim": "2026-06-06T09:50:57.108790-03:00",
+    "duracao_s": 45,
+    "total_pacientes": 17,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "05/06/2026",
+        "pacientes": 9,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "06/06/2026",
+        "pacientes": 8,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info' - periodo encerrado."
+      }
+    ]
   }
 ]
