@@ -88,4 +88,5 @@ jobs:
           git config user.name "WorkLab Bot"
           git add dashboard_data.json
           git diff --staged --quiet || git commit -m "chore: dashboard $(date -u '+%Y-%m-%d %H:%M UTC') [skip ci]"
+          git pull --rebase origin master || true
           git push
