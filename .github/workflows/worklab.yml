@@ -59,6 +59,7 @@ jobs:
           playwright install-deps chromium
 
       - name: Executar automação WorkLab
+        timeout-minutes: 10
         run: python worklab_automation.py
 
       - name: Sincronizar dashboard_data.json

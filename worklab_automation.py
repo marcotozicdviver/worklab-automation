@@ -474,28 +474,39 @@ def conferencia_geral(page, date_str):
     Fallback/verificacao pos-importacao:
     Rotina -> Conferencia Geral -> pesquisa data -> confere todos pendentes.
     Retorna numero de pacientes conferidos (0 = todos ja estavam conferidos).
+    Protecoes: timeout curto por operacao, max 50 iteracoes, deteccao de sem-progresso.
     """
     global BASE_URL
     log(f"[Conferencia Geral] Verificando pendencias para data {date_str}...")
 
+    def _wait_page(ms=1500):
+        """Aguarda pagina com timeout curto e seguro."""
+        try:
+            page.wait_for_load_state("networkidle", timeout=6000)
+        except Exception:
+            pass
+        page.wait_for_timeout(ms)
+
     # ── 1) Navegar para Conferencia Geral via menu Rotina ──
     try:
         page.goto(BASE_URL, wait_until="domcontentloaded", timeout=20000)
-        page.wait_for_load_state("networkidle", timeout=15000)
-        page.wait_for_timeout(1500)
+        _wait_page(1500)
         hover_and_click(page, "Rotina", "Conferência Geral")
-        page.wait_for_load_state("networkidle", timeout=20000)
-        page.wait_for_timeout(2000)
+        _wait_page(2000)
         log("[Conferencia Geral] Navegado: Rotina -> Conferencia Geral")
     except Exception as e:
         log(f"[Conferencia Geral] ERRO ao navegar: {e}. Pulando conferencia.")
         return 0
 
-    # ── 2) Preencher datas (mesmo formato da importacao CDA) ──
-    r0 = set_react_date(page, 0, date_str)
-    r1 = set_react_date(page, 1, date_str)
-    log(f"[Conferencia Geral] Datas definidas: {r0} | {r1}")
-    page.wait_for_timeout(1000)
+    # ── 2) Preencher datas ──
+    try:
+        r0 = set_react_date(page, 0, date_str)
+        r1 = set_react_date(page, 1, date_str)
+        log(f"[Conferencia Geral] Datas definidas: {r0} | {r1}")
+        page.wait_for_timeout(1000)
+    except Exception as e:
+        log(f"[Conferencia Geral] ERRO ao preencher datas: {e}")
+        return 0
 
     # ── 3) Clicar Pesquisar ──
     try:
@@ -506,69 +517,63 @@ def conferencia_geral(page, date_str):
             "input[value*=Pesquisar i]",
         ])
         log("[Conferencia Geral] Pesquisar clicado.")
-        page.wait_for_load_state("networkidle", timeout=20000)
-        page.wait_for_timeout(2000)
+        _wait_page(2000)
     except Exception as e:
         log(f"[Conferencia Geral] ERRO ao pesquisar: {e}")
         return 0
 
+    # ── Helper: contar linhas de paciente na tabela ──
+    def contar_pacientes():
+        try:
+            rows = page.locator("table tr").all()
+            # Descontar header (primeira linha)
+            return max(0, len(rows) - 1)
+        except Exception:
+            return 0
+
     # ── Helper: detectar lista vazia ──
     def lista_vazia():
         txt = (page.evaluate("() => document.body.innerText || ''") or "").lower()
-        return any(k in txt for k in [
-            "nenhum", "sem resultado", "0 resultado",
-            "nenhum paciente", "nenhum registro", "sem paciente",
-        ])
+        if any(k in txt for k in ["nenhum", "sem resultado", "0 resultado",
+                                   "nenhum paciente", "nenhum registro"]):
+            return True
+        return contar_pacientes() == 0
 
-    # ── 4) Lista vazia => tudo ja conferido na importacao ──
+    # ── 4) Lista vazia => tudo ja conferido ──
     if lista_vazia():
         log("[Conferencia Geral] Lista vazia - todos ja conferidos na importacao!")
         return 0
 
+    qtd_inicial = contar_pacientes()
+    log(f"[Conferencia Geral] {qtd_inicial} paciente(s) pendente(s) encontrado(s).")
+
     # ── 5) Loop: duplo clique -> checkbox -> Conferir ──
     total_conferidos = 0
     checkbox_marcado = False
+    qtd_anterior = qtd_inicial
 
-    for iteracao in range(200):  # limite de seguranca
-        # Verificar se voltou para lista vazia (conferencia concluida)
+    for iteracao in range(50):  # max 50 pacientes por seguranca
         if lista_vazia():
-            log(f"[Conferencia Geral] Lista esvaziada - todos conferidos! Total: {total_conferidos}")
+            log(f"[Conferencia Geral] Lista esvaziada! Total conferidos: {total_conferidos}")
             break
 
-        # Duplo clique no primeiro paciente da lista
+        # Deteccao de sem-progresso: se o numero de linhas nao mudou apos Conferir, parar
+        qtd_atual = contar_pacientes()
+        if iteracao > 0 and qtd_atual >= qtd_anterior:
+            log(f"[Conferencia Geral] Sem progresso (linhas: {qtd_anterior} -> {qtd_atual}). Encerrando.")
+            break
+        qtd_anterior = qtd_atual
+
+        # Duplo clique no primeiro paciente (segunda linha da tabela = apos header)
         try:
-            # Tentar primeiro via tabela
-            linha = None
-            rows = page.locator("table tr").all()
-            for r in rows:
-                try:
-                    txt = (r.inner_text() or "").strip()
-                    if not txt:
-                        continue
-                    low = txt.lower()
-                    # Pular headers
-                    if any(h in low for h in ["nome", "paciente", "data", "codigo", "#"]):
-                        if iteracao == 0:
-                            continue
-                    linha = r
-                    break
-                except Exception:
-                    continue
-
-            if not linha:
-                # Fallback: qualquer linha visivel de tabela exceto a primeira (header)
-                todas = page.locator("table tr").all()
-                if len(todas) > 1:
-                    linha = todas[1]  # primeira linha apos header
-
-            if not linha:
-                log("[Conferencia Geral] Nenhuma linha de paciente encontrada.")
+            todas = page.locator("table tr").all()
+            if len(todas) < 2:
+                log("[Conferencia Geral] Tabela sem linhas de paciente.")
                 break
-
+            linha = todas[1]  # primeira linha de dados (indice 1 = apos header)
             linha.dblclick(timeout=5000)
             log(f"[Conferencia Geral] Duplo clique paciente #{iteracao + 1}")
-            page.wait_for_load_state("networkidle", timeout=20000)
-            page.wait_for_timeout(1500)
+            _wait_page(1500)
         except Exception as e:
             log(f"[Conferencia Geral] ERRO duplo clique: {e}")
             break
@@ -577,7 +582,6 @@ def conferencia_geral(page, date_str):
         if not checkbox_marcado:
             try:
                 chk = None
-                # Buscar por label com texto "proximo"
                 for loc in page.locator("input[type=checkbox]").all():
                     try:
                         parent_txt = (loc.evaluate(
@@ -590,7 +594,6 @@ def conferencia_geral(page, date_str):
                         continue
 
                 if not chk:
-                    # Buscar pelo texto visivel na pagina
                     try:
                         label = page.get_by_text("próximo paciente", exact=False).first
                         if label.count() > 0:
@@ -603,11 +606,11 @@ def conferencia_geral(page, date_str):
                         chk.check()
                         log("[Conferencia Geral] Checkbox 'proximo paciente' marcado.")
                     else:
-                        log("[Conferencia Geral] Checkbox 'proximo paciente' ja estava marcado.")
+                        log("[Conferencia Geral] Checkbox ja estava marcado.")
                     checkbox_marcado = True
                 else:
-                    log("[Conferencia Geral] Checkbox 'proximo paciente' nao encontrado - prosseguindo.")
-                    checkbox_marcado = True  # evitar loop desnecessario
+                    log("[Conferencia Geral] Checkbox nao encontrado - prosseguindo.")
+                    checkbox_marcado = True
             except Exception as e:
                 log(f"[Conferencia Geral] Aviso checkbox: {e}")
                 checkbox_marcado = True
@@ -622,8 +625,7 @@ def conferencia_geral(page, date_str):
             ])
             total_conferidos += 1
             log(f"[Conferencia Geral] Conferir #{total_conferidos} clicado.")
-            page.wait_for_load_state("networkidle", timeout=20000)
-            time.sleep(WAIT_CONFERIR)
+            _wait_page(1000)
         except Exception as e:
             log(f"[Conferencia Geral] ERRO ao clicar Conferir: {e}")
             break
