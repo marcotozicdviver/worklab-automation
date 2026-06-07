@@ -3632,5 +3632,44 @@
         "conclusao": "Todos com status 'info' - periodo encerrado."
       }
     ]
+  },
+  {
+    "inicio": "2026-06-06T21:55:11.276869-03:00",
+    "fim": "2026-06-06T21:57:05.318075-03:00",
+    "duracao_s": 114,
+    "total_pacientes": 11,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "05/06/2026",
+        "pacientes": 6,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info'. Conferencia fallback: 0 paciente(s)."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "06/06/2026",
+        "pacientes": 5,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info'. Conferencia fallback: 0 paciente(s)."
+      }
+    ]
   }
 ]
