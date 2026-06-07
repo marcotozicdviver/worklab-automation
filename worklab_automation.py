@@ -469,6 +469,169 @@ def _intercept_conferido(route):
     route.continue_()
 
 
+def conferencia_geral(page, date_str):
+    """
+    Fallback/verificacao pos-importacao:
+    Rotina -> Conferencia Geral -> pesquisa data -> confere todos pendentes.
+    Retorna numero de pacientes conferidos (0 = todos ja estavam conferidos).
+    """
+    global BASE_URL
+    log(f"[Conferencia Geral] Verificando pendencias para data {date_str}...")
+
+    # ── 1) Navegar para Conferencia Geral via menu Rotina ──
+    try:
+        page.goto(BASE_URL, wait_until="domcontentloaded", timeout=20000)
+        page.wait_for_load_state("networkidle", timeout=15000)
+        page.wait_for_timeout(1500)
+        hover_and_click(page, "Rotina", "Conferência Geral")
+        page.wait_for_load_state("networkidle", timeout=20000)
+        page.wait_for_timeout(2000)
+        log("[Conferencia Geral] Navegado: Rotina -> Conferencia Geral")
+    except Exception as e:
+        log(f"[Conferencia Geral] ERRO ao navegar: {e}. Pulando conferencia.")
+        return 0
+
+    # ── 2) Preencher datas (mesmo formato da importacao CDA) ──
+    r0 = set_react_date(page, 0, date_str)
+    r1 = set_react_date(page, 1, date_str)
+    log(f"[Conferencia Geral] Datas definidas: {r0} | {r1}")
+    page.wait_for_timeout(1000)
+
+    # ── 3) Clicar Pesquisar ──
+    try:
+        safe_click(page, [
+            "button:has-text('PESQUISAR')",
+            "button:has-text('Pesquisar')",
+            "input[value*=PESQUISAR i]",
+            "input[value*=Pesquisar i]",
+        ])
+        log("[Conferencia Geral] Pesquisar clicado.")
+        page.wait_for_load_state("networkidle", timeout=20000)
+        page.wait_for_timeout(2000)
+    except Exception as e:
+        log(f"[Conferencia Geral] ERRO ao pesquisar: {e}")
+        return 0
+
+    # ── Helper: detectar lista vazia ──
+    def lista_vazia():
+        txt = (page.evaluate("() => document.body.innerText || ''") or "").lower()
+        return any(k in txt for k in [
+            "nenhum", "sem resultado", "0 resultado",
+            "nenhum paciente", "nenhum registro", "sem paciente",
+        ])
+
+    # ── 4) Lista vazia => tudo ja conferido na importacao ──
+    if lista_vazia():
+        log("[Conferencia Geral] Lista vazia - todos ja conferidos na importacao!")
+        return 0
+
+    # ── 5) Loop: duplo clique -> checkbox -> Conferir ──
+    total_conferidos = 0
+    checkbox_marcado = False
+
+    for iteracao in range(200):  # limite de seguranca
+        # Verificar se voltou para lista vazia (conferencia concluida)
+        if lista_vazia():
+            log(f"[Conferencia Geral] Lista esvaziada - todos conferidos! Total: {total_conferidos}")
+            break
+
+        # Duplo clique no primeiro paciente da lista
+        try:
+            # Tentar primeiro via tabela
+            linha = None
+            rows = page.locator("table tr").all()
+            for r in rows:
+                try:
+                    txt = (r.inner_text() or "").strip()
+                    if not txt:
+                        continue
+                    low = txt.lower()
+                    # Pular headers
+                    if any(h in low for h in ["nome", "paciente", "data", "codigo", "#"]):
+                        if iteracao == 0:
+                            continue
+                    linha = r
+                    break
+                except Exception:
+                    continue
+
+            if not linha:
+                # Fallback: qualquer linha visivel de tabela exceto a primeira (header)
+                todas = page.locator("table tr").all()
+                if len(todas) > 1:
+                    linha = todas[1]  # primeira linha apos header
+
+            if not linha:
+                log("[Conferencia Geral] Nenhuma linha de paciente encontrada.")
+                break
+
+            linha.dblclick(timeout=5000)
+            log(f"[Conferencia Geral] Duplo clique paciente #{iteracao + 1}")
+            page.wait_for_load_state("networkidle", timeout=20000)
+            page.wait_for_timeout(1500)
+        except Exception as e:
+            log(f"[Conferencia Geral] ERRO duplo clique: {e}")
+            break
+
+        # Marcar checkbox "Ir para o proximo paciente" (somente primeira vez)
+        if not checkbox_marcado:
+            try:
+                chk = None
+                # Buscar por label com texto "proximo"
+                for loc in page.locator("input[type=checkbox]").all():
+                    try:
+                        parent_txt = (loc.evaluate(
+                            "el => (el.closest('label') || el.parentElement || el).innerText || ''"
+                        ) or "").lower()
+                        if "pr" in parent_txt and "ximo" in parent_txt:
+                            chk = loc
+                            break
+                    except Exception:
+                        continue
+
+                if not chk:
+                    # Buscar pelo texto visivel na pagina
+                    try:
+                        label = page.get_by_text("próximo paciente", exact=False).first
+                        if label.count() > 0:
+                            chk = label.locator("..").locator("input[type=checkbox]").first
+                    except Exception:
+                        pass
+
+                if chk and chk.count() > 0:
+                    if not chk.is_checked():
+                        chk.check()
+                        log("[Conferencia Geral] Checkbox 'proximo paciente' marcado.")
+                    else:
+                        log("[Conferencia Geral] Checkbox 'proximo paciente' ja estava marcado.")
+                    checkbox_marcado = True
+                else:
+                    log("[Conferencia Geral] Checkbox 'proximo paciente' nao encontrado - prosseguindo.")
+                    checkbox_marcado = True  # evitar loop desnecessario
+            except Exception as e:
+                log(f"[Conferencia Geral] Aviso checkbox: {e}")
+                checkbox_marcado = True
+
+        # Clicar Conferir
+        try:
+            safe_click(page, [
+                "button:has-text('CONFERIR')",
+                "button:has-text('Conferir')",
+                "input[value*=CONFERIR i]",
+                "input[value*=Conferir i]",
+            ])
+            total_conferidos += 1
+            log(f"[Conferencia Geral] Conferir #{total_conferidos} clicado.")
+            page.wait_for_load_state("networkidle", timeout=20000)
+            time.sleep(WAIT_CONFERIR)
+        except Exception as e:
+            log(f"[Conferencia Geral] ERRO ao clicar Conferir: {e}")
+            break
+
+    log(f"[Conferencia Geral] Finalizado. Conferidos como fallback: {total_conferidos}")
+    return total_conferidos
+
+
 def import_cda(page, date_str):
     global BASE_URL
     log(f"Navegando: Integracoes -> Retorno WebService CDA (data {date_str})")
@@ -575,13 +738,15 @@ def parse_import_result(page):
 def processar_periodo(page, rotulo: str, data_alvo: str) -> dict:
     """
     Executa importacao + analise para uma data.
-    Retorna dict com import_result e conclusao.
+    Sempre executa Conferencia Geral apos importacao como verificacao/fallback.
+    Retorna dict com import_result, conferencia_fallback e conclusao.
     """
     log(f"--- INICIO PERIODO {rotulo} (data {data_alvo}) ---")
     periodo = {
         "rotulo": rotulo,
         "data_alvo": data_alvo,
         "import_result": None,
+        "conferencia_fallback": 0,
         "conclusao": "",
     }
     try:
@@ -593,14 +758,30 @@ def processar_periodo(page, rotulo: str, data_alvo: str) -> dict:
 
         if res["sem_exames"]:
             periodo["conclusao"] = "Sem exames - periodo encerrado."
-        elif res["statuses"] and all(s == "info" for s in res["statuses"]):
-            periodo["conclusao"] = "Todos com status 'info' - periodo encerrado."
-        elif any(s == "sucesso" for s in res["statuses"]):
-            periodo["conclusao"] = "Status 'sucesso' identificado - periodo encerrado sem conferencia geral."
         else:
-            periodo["conclusao"] = (
-                "Nenhum status 'sucesso' identificado - periodo encerrado."
-            )
+            # Sempre executa Conferencia Geral como verificacao pos-importacao.
+            # Se Conferido=Sim funcionou na importacao, a lista estara vazia e retorna 0.
+            # Se ficou pendente, confere todos automaticamente.
+            log(f"[{rotulo}] Iniciando Conferencia Geral (verificacao/fallback)...")
+            conferidos = conferencia_geral(page, data_alvo)
+            periodo["conferencia_fallback"] = conferidos
+
+            if res["statuses"] and all(s == "info" for s in res["statuses"]):
+                periodo["conclusao"] = (
+                    f"Todos com status 'info'. "
+                    f"Conferencia fallback: {conferidos} paciente(s)."
+                )
+            elif any(s == "sucesso" for s in res["statuses"]):
+                periodo["conclusao"] = (
+                    f"Status 'sucesso' identificado. "
+                    f"Conferencia fallback: {conferidos} paciente(s)."
+                )
+            else:
+                periodo["conclusao"] = (
+                    f"Periodo encerrado. "
+                    f"Conferencia fallback: {conferidos} paciente(s)."
+                )
+
     except PWTimeout as e:
         periodo["conclusao"] = f"FALHA timeout: {e}"
         log(f"[{rotulo}] ERRO timeout: {e}")
@@ -618,7 +799,11 @@ def imprimir_relatorio_periodo(p: dict):
     log(f"   Importacao - total pacientes: {len(ir.get('pacientes', []))}")
     log(f"   Importacao - statuses: {ir.get('statuses', [])}")
     log(f"   Importacao - pacientes: {ir.get('pacientes', [])}")
-    log("   Conferencia Geral: desabilitada neste fluxo")
+    conf = p.get("conferencia_fallback", 0)
+    if conf > 0:
+        log(f"   Conferencia Geral fallback: {conf} paciente(s) conferidos")
+    else:
+        log("   Conferencia Geral fallback: nenhum pendente (ja conferidos na importacao)")
     log(f"   Conclusao: {p.get('conclusao', '')}")
 
 
@@ -698,6 +883,9 @@ def send_telegram(relatorio: dict, inicio, fim, prefixo=""):
                 contagem[s] = contagem.get(s, 0) + 1
             status_str = ", ".join(f"{k}: {v}" for k, v in contagem.items())
             lines.append(f"   Status: {status_str}")
+        conf = per.get("conferencia_fallback", 0)
+        if conf > 0:
+            lines.append(f"   🔄 Conferencia fallback: {conf} paciente(s)")
         lines.append("")
 
     lines.append(f"⏱️ Duracao: {duracao}s")
