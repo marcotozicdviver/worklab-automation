@@ -840,22 +840,15 @@ def _telegram_send_raw(text: str, max_retries: int = 3):
 
 
 def send_telegram(relatorio: dict, inicio, fim, prefixo=""):
-    """Envia resumo da execucao via Telegram Bot API (sem parse_mode HTML).
-    Notificacao enviada APENAS quando houver pacientes realmente importados."""
+    """Envia resumo da execucao via Telegram Bot API. Sempre notifica."""
     data_str = fim.strftime("%d/%m/%Y")
     hora_str = fim.strftime("%H:%M")
     duracao = int((fim - inicio).total_seconds())
 
-    # Calcular total de pacientes importados em todos os periodos
     total_pac = sum(
         len((per.get("import_result") or {}).get("pacientes", []))
         for per in relatorio.get("periodos", [])
     )
-
-    # So envia notificacao se houver pacientes realmente importados
-    if total_pac == 0:
-        log("Telegram: nenhum paciente importado nesta execucao - notificacao nao enviada.")
-        return
 
     header = f"{prefixo} " if prefixo else ""
     lines = [
@@ -865,18 +858,21 @@ def send_telegram(relatorio: dict, inicio, fim, prefixo=""):
         "",
     ]
 
-    for per in relatorio.get("periodos", []):
-        ir = per.get("import_result") or {}
-        qtd = len(ir.get("pacientes", []))
-        statuses = ir.get("statuses", [])
-        sem = ir.get("sem_exames", False)
+    if total_pac == 0:
+        lines.append("ℹ️ Nenhum paciente importado nesta execucao.")
+    else:
+        for per in relatorio.get("periodos", []):
+            ir = per.get("import_result") or {}
+            qtd = len(ir.get("pacientes", []))
+            statuses = ir.get("statuses", [])
+            sem = ir.get("sem_exames", False)
 
-        if qtd == 0 and not sem:
-            continue  # pular periodos sem pacientes
+            if qtd == 0 and not sem:
+                continue
 
-        lines.append(f"📊 PERIODO {per['rotulo'].upper()}")
-        if sem:
-            lines.append("- Sem exames encontrados")
+            lines.append(f"📊 PERIODO {per['rotulo'].upper()}")
+            if sem:
+                lines.append("- Sem exames encontrados")
         else:
             lines.append(f"✅ {qtd} pacientes importados")
         if statuses:
