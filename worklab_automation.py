@@ -180,12 +180,50 @@ def wait_for_import_complete(page, max_wait_s=120):
 
 
 def hover_and_click(page, parent_text, child_text):
-    """Hover em menu e clica subitem (fallback - pode nao funcionar em headless)."""
-    parent = page.get_by_text(parent_text, exact=False).first
-    parent.hover()
+    """
+    Abre menu pai e clica no filho.
+    Estrategia 1: clique no pai (dispara JS, funciona em headless).
+    Estrategia 2: eventos JS mouseenter/mouseover.
+    Estrategia 3: hover do Playwright (fallback CSS, pode falhar em headless).
+    """
+    # E1: clicar no pai para abrir submenu via JS event listeners
+    try:
+        page.get_by_text(parent_text, exact=False).first.click(timeout=5000)
+        page.wait_for_timeout(600)
+        child = page.get_by_text(child_text, exact=False).first
+        if child.is_visible(timeout=2000):
+            child.click(timeout=3000)
+            return
+    except Exception:
+        pass
+
+    # E2: dispatcher JS de mouse events no pai
+    try:
+        page.evaluate(f"""
+            () => {{
+                const norm = v => (v||'').normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toLowerCase().trim();
+                const target = norm('{parent_text}');
+                for (const el of document.querySelectorAll('a,button,li,span,div')) {{
+                    if (norm((el.textContent||'').trim()) === target) {{
+                        ['mouseenter','mouseover','click'].forEach(t =>
+                            el.dispatchEvent(new MouseEvent(t, {{bubbles:true}})));
+                        break;
+                    }}
+                }}
+            }}
+        """)
+        page.wait_for_timeout(600)
+        child = page.get_by_text(child_text, exact=False).first
+        if child.is_visible(timeout=2000):
+            child.click(timeout=3000)
+            return
+    except Exception:
+        pass
+
+    # E3: hover classico do Playwright (pode nao funcionar em headless com CSS :hover)
+    page.get_by_text(parent_text, exact=False).first.hover()
     page.wait_for_timeout(500)
-    child = page.get_by_text(child_text, exact=False).first
-    child.click()
+    page.get_by_text(child_text, exact=False).first.click()
 
 
 def click_first_visible(page, selectors, timeout_ms=2500):
@@ -271,8 +309,34 @@ def verify_conferido_sim(page):
 
 
 def set_conferido_sim(page):
-    """Define o campo Conferido como 'Sim' de forma direta via JS e clique MUI."""
-    log("  Ajustando campo 'Conferido' para 'Sim'...")
+    """Define Conferido = Sim. Tenta select_option nativo primeiro (mais confiavel)."""
+    log("  Selecionando Conferido = Sim...")
+
+    # ── E0: Playwright select_option (mais confiavel para <select> nativos) ──
+    for css in ["select[name*='conferido' i]", "select[id*='conferido' i]",
+                "select[aria-label*='conferido' i]"]:
+        try:
+            loc = page.locator(css)
+            if loc.count() > 0:
+                for val in ["Sim", "sim", "S", "s", "1", "true"]:
+                    try:
+                        loc.first.select_option(value=val)
+                        page.wait_for_timeout(300)
+                        if verify_conferido_sim(page):
+                            log(f"  Conferido=Sim via select_option(value={val}) [{css}].")
+                            return True
+                    except Exception:
+                        continue
+                try:
+                    loc.first.select_option(label="Sim")
+                    page.wait_for_timeout(300)
+                    if verify_conferido_sim(page):
+                        log(f"  Conferido=Sim via select_option(label=Sim) [{css}].")
+                        return True
+                except Exception:
+                    pass
+        except Exception:
+            continue
 
     # ── Passo 1: Detectar se o campo Conferido existe na pagina ──
     field_info = page.evaluate("""
@@ -450,22 +514,36 @@ def set_conferido_sim(page):
         log("  AVISO: Nao foi possivel confirmar 'Conferido=Sim'. Interceptor de rede sera usado como fallback.")
 
 def _intercept_conferido(route):
-    """Intercepta requisicoes POST para a API de integracao e forca conferido=true."""
+    """
+    Intercepta POST requests e forca conferido=true no body JSON.
+    Intercepta qualquer endpoint POST que contenha 'conferido' no body —
+    nao filtra por URL para nao perder o endpoint caso o WorkLab mude de rota.
+    """
     request = route.request
-    if request.method == "POST" and "integracoes" in request.url:
+    if request.method == "POST":
         try:
             body = request.post_data
-            if body and "conferido" in body:
+            if body and "conferido" in body.lower():
                 data = json.loads(body)
+                modified = False
+                # Forma 1: {"filters": {"conferido": ...}}
                 if "filters" in data and "conferido" in data["filters"]:
                     old_val = data["filters"]["conferido"]
-                    data["filters"]["conferido"] = True
-                    new_body = json.dumps(data)
-                    log(f"  [INTERCEPT] conferido: {old_val} -> True em {request.url}")
-                    route.continue_(post_data=new_body)
+                    if old_val is not True:
+                        data["filters"]["conferido"] = True
+                        modified = True
+                        log(f"  [INTERCEPT] filters.conferido: {old_val}->True  url={request.url}")
+                # Forma 2: {"conferido": ...} direto na raiz
+                if "conferido" in data and data["conferido"] is not True:
+                    old_val = data["conferido"]
+                    data["conferido"] = True
+                    modified = True
+                    log(f"  [INTERCEPT] conferido(root): {old_val}->True  url={request.url}")
+                if modified:
+                    route.continue_(post_data=json.dumps(data))
                     return
         except Exception as e:
-            log(f"  [INTERCEPT] erro ao modificar body: {e}")
+            log(f"  [INTERCEPT] erro: {e}  url={request.url}")
     route.continue_()
 
 
@@ -522,12 +600,24 @@ def conferencia_geral(page, date_str):
         log(f"[Conferencia Geral] ERRO ao pesquisar: {e}")
         return 0
 
-    # ── Helper: contar linhas de paciente na tabela ──
+    # ── Helper: contar linhas de paciente na tabela (HTML ou React) ──
     def contar_pacientes():
         try:
-            rows = page.locator("table tr").all()
-            # Descontar header (primeira linha)
-            return max(0, len(rows) - 1)
+            # Tabela HTML classica
+            html_rows = page.locator("table tr").count()
+            if html_rows > 1:
+                return html_rows - 1  # descontar header
+
+            # React/MUI DataGrid: linhas com role="row" excluindo header
+            react_rows = page.locator("[role='row']:not([role='columnheader'])").count()
+            if react_rows > 0:
+                # Descontar 1 se houver header dentro
+                header_rows = page.locator("[role='rowgroup'] [role='row']").count()
+                return max(0, react_rows - (1 if header_rows == 0 else 0))
+
+            # Ultimo recurso: qualquer estrutura com role="row"
+            any_rows = page.locator("[role='row']").count()
+            return max(0, any_rows - 1)
         except Exception:
             return 0
 
@@ -535,9 +625,17 @@ def conferencia_geral(page, date_str):
     def lista_vazia():
         txt = (page.evaluate("() => document.body.innerText || ''") or "").lower()
         if any(k in txt for k in ["nenhum", "sem resultado", "0 resultado",
-                                   "nenhum paciente", "nenhum registro"]):
+                                   "nenhum paciente", "nenhum registro",
+                                   "no records", "no data"]):
             return True
-        return contar_pacientes() == 0
+        # Considerar vazia apenas se nao houver linhas E nao houver texto de paciente
+        qtd = contar_pacientes()
+        if qtd == 0:
+            # Verificar se a pagina tem conteudo de lista carregado
+            has_table = page.locator("table, [role='grid'], [role='rowgroup']").count() > 0
+            if has_table:
+                return True
+        return False
 
     # ── 4) Lista vazia => tudo ja conferido ──
     if lista_vazia():
@@ -564,14 +662,25 @@ def conferencia_geral(page, date_str):
             break
         qtd_anterior = qtd_atual
 
-        # Duplo clique no primeiro paciente (segunda linha da tabela = apos header)
+        # Duplo clique no primeiro paciente (HTML table ou React grid)
         try:
-            todas = page.locator("table tr").all()
-            if len(todas) < 2:
-                log("[Conferencia Geral] Tabela sem linhas de paciente.")
+            dblclicked = False
+            # Tentar tabela HTML classica
+            todas_html = page.locator("table tr").all()
+            if len(todas_html) >= 2:
+                todas_html[1].dblclick(timeout=5000)
+                dblclicked = True
+            else:
+                # Tentar React grid: pegar primeira row de dados (nao header)
+                data_rows = page.locator("[role='row']:not([aria-rowindex='1'])")
+                count_dr = data_rows.count()
+                if count_dr > 0:
+                    data_rows.first.dblclick(timeout=5000)
+                    dblclicked = True
+
+            if not dblclicked:
+                log("[Conferencia Geral] Nenhuma linha de paciente encontrada.")
                 break
-            linha = todas[1]  # primeira linha de dados (indice 1 = apos header)
-            linha.dblclick(timeout=5000)
             log(f"[Conferencia Geral] Duplo clique paciente #{iteracao + 1}")
             _wait_page(1500)
         except Exception as e:
@@ -652,8 +761,9 @@ def import_cda(page, date_str):
     # Setar campo Conferido para "Sim" na UI antes de importar
     set_conferido_sim(page)
 
-    # Registrar interceptacao como fallback para forcar conferido=true na API
-    page.route("**/integracoes/**", _intercept_conferido)
+    # Interceptar TODAS as requisicoes (sem filtrar por URL) para garantir
+    # que o endpoint certo seja capturado independente da rota do WorkLab.
+    page.route("**/*", _intercept_conferido)
     log("  Route interceptor registrado para forcar conferido=true")
 
     safe_click(page, [
@@ -665,7 +775,7 @@ def import_cda(page, date_str):
 
     # Remover interceptacao apos uso para evitar duplicacao em proximas chamadas
     try:
-        page.unroute("**/integracoes/**", _intercept_conferido)
+        page.unroute("**/*", _intercept_conferido)
     except Exception:
         pass
 
