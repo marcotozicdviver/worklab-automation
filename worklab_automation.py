@@ -960,38 +960,9 @@ def update_dashboard(relatorio: dict, inicio, fim):
         log(f"AVISO: falha ao atualizar dashboard: {e}")
 
 
-def check_horario_schedule():
-    """
-    Guarda de horario para execucoes via GitHub schedule.
-    O schedule do GitHub pode atrasar ate 30min, entao aceita janela de XX:10 a XX:50.
-    Horas validas em BRT: 19, 20, 21, 22, 23, 0, 1, 2, 3, 4, 5.
-    Retorna True se pode executar, False se deve abortar.
-    """
-    trigger = os.getenv("TRIGGER_EVENT", "workflow_dispatch")
-    if trigger != "schedule":
-        return True  # workflow_dispatch e outros: sempre executar
-
-    now_brt = datetime.now(SP_TZ)
-    hora = now_brt.hour
-    minuto = now_brt.minute
-    horas_validas = {19, 20, 21, 22, 23, 0, 1, 2, 3, 4, 5}
-
-    if hora in horas_validas and 10 <= minuto <= 50:
-        log(f"Schedule dentro da janela ({hora:02d}:{minuto:02d} BRT) - executando.")
-        return True
-
-    log(f"Schedule FORA da janela ({hora:02d}:{minuto:02d} BRT) - abortando execucao tardia.")
-    return False
-
-
 def main():
     inicio = datetime.now(SP_TZ)
     log(f"=== INICIO EXECUCAO WorkLab @ {inicio.strftime('%Y-%m-%d %H:%M:%S')} ===")
-
-    # Guarda de horario para schedule atrasado do GitHub
-    if not check_horario_schedule():
-        sys.exit(0)
-
     data_ontem = date_str_for(-1)
     data_hoje = date_str_for(0)
     log(f"Datas alvo: D-1={data_ontem} | D={data_hoje}")
