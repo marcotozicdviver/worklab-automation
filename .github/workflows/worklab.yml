@@ -73,6 +73,8 @@ jobs:
 
       - name: Executar automação WorkLab
         timeout-minutes: 10
+        env:
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
         run: python worklab_automation.py
 
       - name: Sincronizar dashboard_data.json

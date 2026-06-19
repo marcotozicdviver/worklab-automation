@@ -1069,6 +1069,25 @@ def update_dashboard(relatorio: dict, inicio, fim):
 def main():
     inicio = datetime.now(SP_TZ)
     log(f"=== INICIO EXECUCAO WorkLab @ {inicio.strftime('%Y-%m-%d %H:%M:%S')} ===")
+
+    # ── Guarda de horario (apenas para execucoes automaticas via schedule) ──
+    # GitHub Actions schedule sofre atrasos de 3-6h.
+    # Permitimos runs automaticos das 19:00 ate 13:00 BRT (janela de 18h).
+    # Das 13:00 as 19:00 BRT bloqueamos para evitar runs durante expediente.
+    # Execucoes manuais (workflow_dispatch) nunca sao bloqueadas.
+    event_name = os.getenv("GITHUB_EVENT_NAME", "workflow_dispatch")
+    if event_name == "schedule":
+        hora_brt = inicio.hour + inicio.minute / 60.0
+        # 13:00 <= hora < 19:00 BRT → fora da janela permitida
+        if 13.0 <= hora_brt < 19.0:
+            log(f"Schedule fora da janela permitida ({inicio.strftime('%H:%M')} BRT). "
+                f"Janela: 19:00-13:00 BRT. Encerrando sem executar.")
+            _telegram_send_raw(
+                f"WorkLab: run automatico bloqueado ({inicio.strftime('%H:%M')} BRT) "
+                f"— GitHub atrasou o schedule fora da janela 19:00-13:00 BRT."
+            )
+            sys.exit(0)
+
     data_ontem = date_str_for(-1)
     data_hoje = date_str_for(0)
     log(f"Datas alvo: D-1={data_ontem} | D={data_hoje}")
