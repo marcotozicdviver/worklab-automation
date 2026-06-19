@@ -10,6 +10,7 @@ Para cada periodo: importa e analisa resultado.
 """
 import json
 import os
+import re
 import sys
 import time
 import traceback
@@ -136,12 +137,31 @@ def login(page):
     time.sleep(WAIT_ENTRAR)
     page.wait_for_load_state("networkidle", timeout=30000)
 
+    # Verificar se login foi bem-sucedido (URL deve mudar apos autenticacao)
+    url_pos_login = page.url
+    if url_pos_login.rstrip("/") == URL.rstrip("/"):
+        # Ainda na pagina de login — verificar mensagem de erro
+        body_txt = (page.evaluate("() => document.body.innerText || ''") or "").lower()
+        if any(k in body_txt for k in ["senha", "invalido", "incorreto", "erro", "error", "invalid"]):
+            raise RuntimeError(f"Login falhou — credenciais rejeitadas. Verifique LAB_ID/USER/PASSWORD.")
+        # Sem erro explicito, tentar clicar Entrar novamente (pode ter sido um timeout de rede)
+        log("AVISO: URL nao mudou apos login — tentando novamente...")
+        time.sleep(2)
+        safe_click(page, [
+            "button:has-text('ENTRAR')", "input[type=submit][value*=ENTRAR i]",
+            "button:has-text('Entrar')", "input[value*=Entrar i]",
+        ])
+        time.sleep(WAIT_ENTRAR)
+        page.wait_for_load_state("networkidle", timeout=30000)
+        if page.url.rstrip("/") == URL.rstrip("/"):
+            raise RuntimeError("Login falhou duas vezes consecutivas. Verifique credenciais e acesso ao WorkLab.")
+
     # Capturar BASE_URL apos login (ex: https://app2.worklabweb.com.br/)
     global BASE_URL
     from urllib.parse import urlparse
     parsed = urlparse(page.url)
     BASE_URL = f"{parsed.scheme}://{parsed.netloc}"
-    log(f"BASE_URL capturada: {BASE_URL}")
+    log(f"Login OK. BASE_URL: {BASE_URL}")
 
 
 def set_react_date(page, input_idx, date_str):
@@ -522,6 +542,13 @@ def _intercept_conferido(route):
     request = route.request
     if request.method == "POST":
         try:
+            # Pular rapidamente recursos estaticos (imagens, fonts, CSS)
+            url_lower = request.url.lower()
+            if any(url_lower.endswith(ext) for ext in
+                   (".png",".jpg",".jpeg",".gif",".svg",".ico",
+                    ".woff",".woff2",".ttf",".css",".js")):
+                route.continue_()
+                return
             body = request.post_data
             if body and "conferido" in body.lower():
                 data = json.loads(body)
@@ -759,18 +786,18 @@ def import_cda(page, date_str):
     page.wait_for_timeout(1000)
 
     # Setar campo Conferido para "Sim" na UI antes de importar
-    set_conferido_sim(page)
+    conferido_ui_ok = set_conferido_sim(page)
 
-    # Interceptar TODAS as requisicoes (sem filtrar por URL) para garantir
-    # que o endpoint certo seja capturado independente da rota do WorkLab.
+    # Interceptar todas as requisicoes para forcar conferido=true na API
+    # (fallback caso a selecao na UI nao tenha funcionado)
     page.route("**/*", _intercept_conferido)
-    log("  Route interceptor registrado para forcar conferido=true")
+    log(f"  Route interceptor registrado (UI conferido={'OK' if conferido_ui_ok else 'FALLBACK'})")
 
     safe_click(page, [
         "button:has-text('IMPORTAR')", "input[value*=IMPORTAR i]",
         "button:has-text('Importar')",
     ])
-    log(f"IMPORTAR clicado. Aguardando conclusao do progresso...")
+    log("  IMPORTAR clicado. Aguardando conclusao do progresso...")
     wait_for_import_complete(page, max_wait_s=120)
 
     # Remover interceptacao apos uso para evitar duplicacao em proximas chamadas
@@ -778,6 +805,8 @@ def import_cda(page, date_str):
         page.unroute("**/*", _intercept_conferido)
     except Exception:
         pass
+
+    return conferido_ui_ok
 
 
 def parse_import_result(page):
@@ -824,7 +853,6 @@ def parse_import_result(page):
 
     # Se nao encontrou via tabela, parsear body text (React)
     if not statuses:
-        import re
         # Linhas do tipo: "0003251\tGABRIEL SARAIVA LEAO\t\tinfo"
         for line in body_text.splitlines():
             line = line.strip()
@@ -859,10 +887,12 @@ def processar_periodo(page, rotulo: str, data_alvo: str) -> dict:
         "data_alvo": data_alvo,
         "import_result": None,
         "conferencia_fallback": 0,
+        "conferido_ui": False,
         "conclusao": "",
     }
     try:
-        import_cda(page, data_alvo)
+        conferido_ui = import_cda(page, data_alvo)
+        periodo["conferido_ui"] = bool(conferido_ui)
         res = parse_import_result(page)
         periodo["import_result"] = res
         log(f"[{rotulo}] Resultado importacao: sem_exames={res['sem_exames']} "
@@ -949,8 +979,8 @@ def _telegram_send_raw(text: str, max_retries: int = 3):
     return False
 
 
-def send_telegram(relatorio: dict, inicio, fim, prefixo=""):
-    """Envia resumo da execucao via Telegram Bot API. Sempre notifica."""
+def send_telegram(relatorio: dict, inicio, fim, prefixo="") -> bool:
+    """Envia resumo da execucao via Telegram. Retorna True se enviado com sucesso."""
     data_str = fim.strftime("%d/%m/%Y")
     hora_str = fim.strftime("%H:%M")
     duracao = int((fim - inicio).total_seconds())
@@ -959,47 +989,53 @@ def send_telegram(relatorio: dict, inicio, fim, prefixo=""):
         len((per.get("import_result") or {}).get("pacientes", []))
         for per in relatorio.get("periodos", [])
     )
+    tem_falha = any(
+        "FALHA" in per.get("conclusao", "")
+        for per in relatorio.get("periodos", [])
+    )
 
     header = f"{prefixo} " if prefixo else ""
+    icone = "ERRO" if tem_falha else "OK"
     lines = [
-        f"🤖 {header}WorkLab - Execucao Concluida",
-        f"📅 {data_str} {hora_str}",
-        f"⚡ Executado pelo Claude",
+        f"WorkLab [{icone}] {header}{data_str} {hora_str}",
         "",
     ]
 
     if total_pac == 0:
-        lines.append("ℹ️ Nenhum paciente importado nesta execucao.")
+        lines.append("Nenhum paciente importado nesta execucao.")
     else:
         for per in relatorio.get("periodos", []):
             ir = per.get("import_result") or {}
             qtd = len(ir.get("pacientes", []))
             statuses = ir.get("statuses", [])
             sem = ir.get("sem_exames", False)
+            conf = per.get("conferencia_fallback", 0)
+            conf_ui = per.get("conferido_ui", False)
 
             if qtd == 0 and not sem:
                 continue
 
-            lines.append(f"📊 PERIODO {per['rotulo'].upper()}")
+            lines.append(f"[{per['rotulo']}]")
             if sem:
-                lines.append("- Sem exames encontrados")
-        else:
-            lines.append(f"✅ {qtd} pacientes importados")
-        if statuses:
-            contagem = {}
-            for s in statuses:
-                contagem[s] = contagem.get(s, 0) + 1
-            status_str = ", ".join(f"{k}: {v}" for k, v in contagem.items())
-            lines.append(f"   Status: {status_str}")
-        conf = per.get("conferencia_fallback", 0)
-        if conf > 0:
-            lines.append(f"   🔄 Conferencia fallback: {conf} paciente(s)")
-        lines.append("")
+                lines.append("  Sem exames")
+            else:
+                lines.append(f"  {qtd} paciente(s) importado(s)")
+                if statuses:
+                    contagem = {}
+                    for s in statuses:
+                        contagem[s] = contagem.get(s, 0) + 1
+                    lines.append("  Status: " + ", ".join(f"{k}:{v}" for k, v in contagem.items()))
+                if conf_ui:
+                    lines.append("  Conferido: UI OK")
+                elif conf > 0:
+                    lines.append(f"  Conferido: fallback ({conf} pac.)")
+                else:
+                    lines.append("  Conferido: nenhum pendente")
+            lines.append("")
 
-    lines.append(f"⏱️ Duracao: {duracao}s")
-
+    lines.append(f"Duracao: {duracao}s")
     texto = "\n".join(lines)
-    _telegram_send_raw(texto)
+    return _telegram_send_raw(texto)
 
 
 def send_telegram_error(error_msg: str, prefixo=""):
@@ -1015,7 +1051,7 @@ def send_telegram_error(error_msg: str, prefixo=""):
     _telegram_send_raw(texto)
 
 
-def update_dashboard(relatorio: dict, inicio, fim):
+def update_dashboard(relatorio: dict, inicio, fim, telegram_ok: bool = False):
     """Append execution record to shared JSON for dashboard consumption."""
     dashboard_path = "/home/ubuntu/shared/dashboard_data.json"
     try:
@@ -1030,7 +1066,6 @@ def update_dashboard(relatorio: dict, inicio, fim):
         total_pac = 0
         periodos_resumo = []
         tem_falha = False
-        telegram_ok = bool(TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID)
 
         for per in relatorio.get("periodos", []):
             ir = per.get("import_result") or {}
@@ -1193,12 +1228,10 @@ def main():
     except Exception as e:
         log(f"AVISO: falha ao salvar relatorio: {e}")
 
-    # Atualizar dashboard JSON
-    update_dashboard(relatorio, inicio, fim)
-
-    # Enviar notificacao Telegram
+    # Enviar notificacao Telegram e atualizar dashboard com resultado real
     prefixo = os.getenv("WORKLAB_PREFIXO", "")
-    send_telegram(relatorio, inicio, fim, prefixo=prefixo)
+    telegram_ok = send_telegram(relatorio, inicio, fim, prefixo=prefixo)
+    update_dashboard(relatorio, inicio, fim, telegram_ok=telegram_ok)
 
 
 if __name__ == "__main__":
