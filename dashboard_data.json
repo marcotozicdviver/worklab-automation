@@ -5378,5 +5378,49 @@
         "conclusao": "Todos com status 'info'. Conferencia fallback: 0 paciente(s)."
       }
     ]
+  },
+  {
+    "inicio": "2026-06-20T12:23:58.305956-03:00",
+    "fim": "2026-06-20T12:26:15.262258-03:00",
+    "duracao_s": 136,
+    "total_pacientes": 16,
+    "status": "ok",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "19/06/2026",
+        "pacientes": 11,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info'. Conferencia fallback: 0 paciente(s)."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "20/06/2026",
+        "pacientes": 5,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info'. Conferencia fallback: 0 paciente(s)."
+      }
+    ]
   }
 ]
