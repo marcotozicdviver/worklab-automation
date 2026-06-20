@@ -4667,5 +4667,37 @@
         "conclusao": "FALHA: Nenhum seletor clicavel encontrado: [\"button:has-text('IMPORTAR')\", 'input[value*=IMPORTAR i]', \"button:has-text('Importar')\"]"
       }
     ]
+  },
+  {
+    "inicio": "2026-06-20T02:30:43.719073-03:00",
+    "fim": "2026-06-20T02:33:15.089524-03:00",
+    "duracao_s": 151,
+    "total_pacientes": 5,
+    "status": "erro",
+    "telegram_enviado": true,
+    "periodos": [
+      {
+        "rotulo": "D-1 (dia anterior)",
+        "data_alvo": "19/06/2026",
+        "pacientes": 5,
+        "sem_exames": false,
+        "statuses": [
+          "info",
+          "info",
+          "info",
+          "info",
+          "info"
+        ],
+        "conclusao": "Todos com status 'info'. Conferencia fallback: 0 paciente(s)."
+      },
+      {
+        "rotulo": "D (dia atual)",
+        "data_alvo": "20/06/2026",
+        "pacientes": 0,
+        "sem_exames": false,
+        "statuses": [],
+        "conclusao": "FALHA: Nenhum seletor clicavel encontrado: [\"button:has-text('IMPORTAR')\", 'input[value*=IMPORTAR i]', \"button:has-text('Importar')\"]"
+      }
+    ]
   }
 ]
