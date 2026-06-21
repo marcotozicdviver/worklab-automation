@@ -1,7 +1,8 @@
 name: WorkLab CDA Automation
 
 on:
-  workflow_dispatch:
+  # AUTOMACAO PAUSADA — reativar quando solicitado (descomentar workflow_dispatch)
+  # workflow_dispatch:
   # Schedule pausado — disparos controlados pelo scheduler_trigger.py no PC servidor.
   # Para reativar, descomentar os crons abaixo:
   # schedule:
