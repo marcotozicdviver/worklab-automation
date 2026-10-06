@@ -1,3 +1,4 @@
+﻿# WorkLab CDA - Automacao de importacao
 name: WorkLab CDA Automation
 
 on:
@@ -33,7 +34,7 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Criar estrutura de diretórios
+      - name: Criar estrutura de diretÃ³rios
         run: |
           sudo mkdir -p /home/ubuntu/shared
           sudo mkdir -p /home/ubuntu/.config
@@ -63,7 +64,7 @@ jobs:
       - name: Copiar dashboard_data.json
         run: cp dashboard_data.json /home/ubuntu/shared/dashboard_data.json
 
-      - name: Instalar dependências Python
+      - name: Instalar dependÃªncias Python
         run: pip install playwright python-dotenv
 
       - name: Instalar Chromium
@@ -73,7 +74,7 @@ jobs:
           playwright install chromium
           playwright install-deps chromium
 
-      - name: Executar automação WorkLab
+      - name: Executar automaÃ§Ã£o WorkLab
         timeout-minutes: 10
         env:
           GITHUB_EVENT_NAME: ${{ github.event_name }}
@@ -92,3 +93,4 @@ jobs:
           git diff --staged --quiet || git commit -m "chore: dashboard $(date -u '+%Y-%m-%d %H:%M UTC') [skip ci]"
           git pull --rebase origin master || true
           git push
+
